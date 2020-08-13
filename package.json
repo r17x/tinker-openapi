@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "gen": "openapi-generator",
+    "gen:petstore": "yarn gen generate -g ocaml -o impl -i petstore.yaml"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "1.0.15-5.0.0-beta"
+  }
+}
