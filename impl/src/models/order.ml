@@ -7,6 +7,7 @@
  * Schema Order.t : An order for a pets from the pet store
  *)
 
+[@decco]
 type t = {
     id: int64 option [@default None];
     pet_id: int64 option [@default None];
@@ -15,7 +16,7 @@ type t = {
     (* Order Status *)
     status: Enums.status option [@default None];
     complete: bool option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
+} ;
 
 (** An order for a pets from the pet store *)
 let create () : t = {

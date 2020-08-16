@@ -7,6 +7,7 @@
  * Schema User.t : A User who is purchasing from the pet store
  *)
 
+[@decco]
 type t = {
     id: int64 option [@default None];
     username: string option [@default None];
@@ -17,7 +18,7 @@ type t = {
     phone: string option [@default None];
     (* User Status *)
     user_status: int32 option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
+} ;
 
 (** A User who is purchasing from the pet store *)
 let create () : t = {
