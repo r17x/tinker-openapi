@@ -6,11 +6,11 @@
 {{/description}}
 {{/operation}}
 {{/operations}}
- *)
+ */
 
 {{#operations}}
 {{#operation}}
-let {{{operationId}}} {{^hasParams}}(){{/hasParams}}{{#allParams}}{{> to_param}}{{#hasMore}} {{/hasMore}}{{#-last}}{{^required}} (){{/required}}{{/-last}}{{/allParams}} =
+let {{{operationId}}} = {{^hasParams}}(){{/hasParams}}({{#allParams}}{{> to_param}}{{#hasMore}},{{/hasMore}}{{#-last}}{{^required}} ,(){{/required}}{{/-last}}{{/allParams}}) => {
     let open Lwt in
     let uri = Request.build_uri "{{{path}}}" in
     let headers = Request.default_headers in
@@ -62,6 +62,7 @@ let {{{operationId}}} {{^hasParams}}(){{/hasParams}}{{#allParams}}{{> to_param}}
 {{#returnType}}
     Request.read_json_body{{#returnContainer}}{{#isListContainer}}_as_list{{/isListContainer}}{{#isMapContainer}}_as_map{{/isMapContainer}}{{#returnBaseType}}{{^vendorExtensions.x-return-free-form-object}}_of{{/vendorExtensions.x-return-free-form-object}}{{/returnBaseType}}{{/returnContainer}}{{^returnContainer}}{{#returnBaseType}}{{^vendorExtensions.x-return-free-form-object}}_as{{/vendorExtensions.x-return-free-form-object}}{{/returnBaseType}}{{/returnContainer}} {{#returnType}}{{^vendorExtensions.x-return-free-form-object}}({{> of_json}}){{/vendorExtensions.x-return-free-form-object}}{{/returnType}} resp body
 {{/returnType}}
+}
 
 {{/operation}}
 {{/operations}}
